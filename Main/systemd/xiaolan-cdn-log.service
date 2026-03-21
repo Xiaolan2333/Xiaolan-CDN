@@ -1,0 +1,13 @@
+[Unit]
+Description=Xiaolan-CDN-System-Log
+After=network.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/xiaolan-cdn-system
+ExecStart=/opt/xiaolan-cdn-system/log
+SyslogIdentifier=xiaolan-cdn-log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Xiaolan-CDN-System-Log
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=5min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
