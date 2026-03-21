@@ -45,7 +45,7 @@ func main() {
 
 // 确保必要的目录存在
 func setupDirs() {
-	dirs := []string{"tmp", "node-accrss-logs"}
+	dirs := []string{"tmp", "node-access-logs"}
 	for _, d := range dirs {
 		if _, err := os.Stat(d); os.IsNotExist(err) {
 			os.MkdirAll(d, 0755)
@@ -118,7 +118,7 @@ func processServer(s ServerInfo) error {
 	remotePath := "/opt/xiaolan-cdn/logs/access.log"
 	tempFileName := fmt.Sprintf("%s-%s.log", s.Name, timestamp)
 	tempPath := filepath.Join("tmp", tempFileName)
-	finalLogPath := filepath.Join("node-accrss-logs", fmt.Sprintf("%s-%s.log", s.Name, today))
+	finalLogPath := filepath.Join("node-access-logs", fmt.Sprintf("%s-%s.log", s.Name, today))
 
 	// 从服务器下载文件
 	srcFile, err := client.Open(remotePath)
