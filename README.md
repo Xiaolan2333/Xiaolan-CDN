@@ -1,5 +1,9 @@
 # Xiaolan-CDN
 
+Gitee：https://gitee.com/Xiaolan23333/Xiaolan-CDN
+
+GitHub：https://github.com/Xiaolan2333/Xiaolan-CDN
+
 ## 功能
 
 1.同步Nginx配置文件
@@ -7,7 +11,18 @@
 2.将Nginx访问日志收集到一台服务器上
 
 ## 食用方法
+### 支持的操作系统
+主控：
 
+理论上支持所有`Linux内核版本≥3.2`的Linux系统
+
+被控：
+
+一键安装脚本仅支持`Deb`系
+
+`Debian 11~13`经测试没有BUG，其余未知
+
+除`Deb`系系统，其他系统需手动安装（未测试）
 ### 主控安装
 
 1.新建一个文件夹并进入：
@@ -52,6 +67,8 @@ IP（例如127.0.0.1）
 6.将你的`nginx.conf`文件放入`主控文件夹/node-config`中
 
 7.执行配置文件同步
+
+在主控文件夹中执行
 ```Bash
 ./main
 ```
@@ -63,7 +80,7 @@ systemctl daemon-reload && systemctl enable xiaolan-cdn-log.timer --now
 
 9.安装结束，建议奖励自己喝一杯奶茶
 
-注：软件同步的是整个`node-config`文件夹内的所有文件，所以证书文件也可以放里面
+注：配置文件同步的是整个`node-config`文件夹内的所有文件，证书文件也可以放里面；Log同步系统是下载节点中的`/opt/xiaolan-cdn/logs/access.log`文件，需在`nginx.conf`中指定`access.log`的文件路径为`/opt/xiaolan-cdn/logs/access.log`
 
 ### 被控安装
 ```Bash
@@ -76,6 +93,40 @@ wget https://raw.githubusercontent.com/Xiaolan2333/Xiaolan-CDN/refs/heads/main/i
 ./main
 ```
 即可同步新的配置文件
+### 更新被控
+只需要在主控文件夹中运行（主控版本需≥0.0.2）
+```Bash
+./update
+```
+即可自动更新所有节点
+## 从源码运行
+主控：
+
+主程序：
+```Bash
+go run main.go
+```
+日志同步程序：
+```Bash
+go run log.go
+```
+
+被控：
+
+被控就是一个普通的`Nginx`，没有其它程序（
+
+我使用的编译参数：
+```Bash
+./configure --prefix=/opt/xiaolan-cdn --build=Xiaolan-CDN --with-threads --with-file-aio --with-http_ssl_module --with-http_v2_module --with-http_v3_module --with-http_realip_module --with-http_addition_module --with-http_image_filter_module --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_auth_request_module --with-http_random_index_module --with-http_secure_link_module --with-http_degradation_module --with-http_slice_module --with-http_stub_status_module --with-stream --with-stream_ssl_module --with-stream_realip_module --with-stream_ssl_preread_module --with-pcre-jit --with-compat --with-pcre=/root/pcre2-10.47 --with-zlib=/root/zlib-1.3.2 --with-openssl=/root/openssl-3.5.5 --add-module=/root/njs-0.96/nginx
+```
+如果需要自己编译需自行下载并替换参数中的`OpenSSL`、`PCRE2`、`Zlib`和`Nginx-NJS`的路径
+
+## 本仓库路径说明
+```Git
+--- Main   主控
+|
+--- Node   节点
+```
 
 ## 联系我
 请发送邮件至`Xiaolan@Xiaolan.xin`
