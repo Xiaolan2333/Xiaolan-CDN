@@ -16,7 +16,7 @@ GitHub：https://github.com/Xiaolan2333/Xiaolan-CDN
 
 理论上支持所有`Linux内核版本≥3.2`的Linux系统
 
-被控：
+节点：
 
 一键安装脚本仅支持`Deb`系
 
@@ -82,7 +82,7 @@ systemctl daemon-reload && systemctl enable xiaolan-cdn-log.timer --now
 
 注：配置文件同步的是整个`node-config`文件夹内的所有文件，证书文件也可以放里面；Log同步系统是下载节点中的`/opt/xiaolan-cdn/logs/access.log`文件，需在`nginx.conf`中指定`access.log`的文件路径为`/opt/xiaolan-cdn/logs/access.log`
 
-### 被控安装
+### 节点安装
 ```Bash
 wget https://raw.githubusercontent.com/Xiaolan2333/Xiaolan-CDN/refs/heads/main/install-node.sh && chmod 777 install-node.sh && ./install-node.sh
 ```
@@ -93,7 +93,7 @@ wget https://raw.githubusercontent.com/Xiaolan2333/Xiaolan-CDN/refs/heads/main/i
 ./main
 ```
 即可同步新的配置文件
-### 更新被控
+### 更新节点
 只需要在主控文件夹中运行（主控版本需≥0.0.2）
 ```Bash
 ./update
@@ -111,9 +111,9 @@ go run main.go
 go run log.go
 ```
 
-被控：
+节点：
 
-被控就是一个普通的`Nginx`，没有其它程序（
+节点就是一个普通的`Nginx`，没有其它程序（
 
 我使用的编译参数：
 ```Bash
