@@ -35,4 +35,7 @@ echo "设置Systemd配置文件成功"
 echo "启动Nginx"
 systemctl daemon-reload
 systemctl enable xiaolan-cdn --now
+echo "清理临时文件"
+rm /opt/xiaolan-cdn/Xiaolan-CDN-Node.zip
+echo "清理完成"
 echo "节点安装完成"
