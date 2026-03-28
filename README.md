@@ -93,12 +93,29 @@ wget https://raw.githubusercontent.com/Xiaolan2333/Xiaolan-CDN/refs/heads/main/i
 ./main
 ```
 即可同步新的配置文件
+
 ### 更新节点
 只需要在主控文件夹中运行（主控版本需≥0.0.2）
 ```Bash
 ./update
 ```
 即可自动更新所有节点
+
+### 更新主控
+1.备份`node.conf`文件
+
+2.删掉主控文件夹内的所有文件
+
+3.下载最新版主控文件并在原主控文件夹内解压
+
+4.把备份的`node.conf`覆盖到主控文件夹内的`node.conf`
+
+5.执行
+```Bash
+systemctl restart xiaolan-cdn-log.timer
+```
+6.更新完成
+
 ## 从源码运行
 主控：
 
