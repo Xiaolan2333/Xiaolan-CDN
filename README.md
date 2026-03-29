@@ -14,7 +14,9 @@ GitHub：https://github.com/Xiaolan2333/Xiaolan-CDN
 ### 支持的操作系统
 主控：
 
-理论上支持所有`Linux内核版本≥3.2`的Linux系统
+一键安装脚本仅支持`Deb`系
+
+理论上支持所有`Linux内核版本≥3.2`且使用`Systemd`的Linux系统
 
 节点：
 
@@ -24,7 +26,40 @@ GitHub：https://github.com/Xiaolan2333/Xiaolan-CDN
 
 除`Deb`系系统，其他系统需手动安装（未测试）
 ### 主控安装
+#### 如需使用`Xiaolan-CDN-Web`请使用自动安装
+#### 自动安装
+```Bash
+wget https://raw.githubusercontent.com/Xiaolan2333/Xiaolan-CDN/refs/heads/main/install-system.sh && chmod 777 install-system.sh && ./install-system.sh
+```
+脚本会将主控安装到`/opt/xiaolan-cdn-system`
 
+设置`node.conf`节点列表：
+```Bash
+vim /opt/xiaolan-cdn-system/node.conf
+```
+`node.conf`格式：
+```node.conf
+服务器名（例如Aliyun-JP）
+IP（例如127.0.0.1）
+端口（例如22）
+用户名（例如root）
+密码（服务器的密码）
+
+服务器名（例如Aliyun-JP）
+IP（例如127.0.0.1）
+端口（例如22）
+用户名（例如root）
+密码（服务器的密码）
+```
+
+执行配置文件同步
+```Bash
+cd /opt/xiaolan-cdn-system && ./main
+```
+
+#### 手动安装
+
+#### 如需使用`Xiaolan-CDN-Web`请使用自动安装
 1.新建一个文件夹并进入：
 ```Bash
 mkdir 文件夹名 && cd 文件夹名
@@ -70,7 +105,7 @@ IP（例如127.0.0.1）
 
 在主控文件夹中执行
 ```Bash
-./main
+cd 主控文件夹 && ./main
 ```
 
 8.运行Log同步系统，Log文件保存在`node-accrss-logs`文件夹内，自动按服务器名-日期.log存储
@@ -90,14 +125,14 @@ wget https://raw.githubusercontent.com/Xiaolan2333/Xiaolan-CDN/refs/heads/main/i
 ### 更新节点`nginx.conf`配置文件
 将你新的`nginx.conf`文件放入`主控文件夹/node-config`中，然后在主控文件夹中执行
 ```Bash
-./main
+cd 主控文件夹 && ./main
 ```
 即可同步新的配置文件
 
 ### 更新节点
 只需要在主控文件夹中运行（主控版本需≥0.0.2）
 ```Bash
-./update
+cd 主控文件夹 && ./update
 ```
 即可自动更新所有节点
 
