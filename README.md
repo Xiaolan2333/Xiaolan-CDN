@@ -179,11 +179,40 @@ go run log.go
 ```
 如果需要自己编译需自行下载并替换参数中的`OpenSSL`、`PCRE2`、`Zlib`和`Nginx-NJS`的路径
 
-## 本仓库路径说明
+## 本仓库各文件及文件夹说明
 ```Git
---- Main   主控
-|
---- Node   节点
+根目录
+│  install-node.sh                  # 节点安装脚本
+│  install-system.sh                # 主控安装脚本
+│  LICENSE                          # 许可证
+│  README.md                        # 仓库说明
+│  
+├─Main
+│  │  log.go                        # 日志同步程序源码
+│  │  main.go                       # 主程序源码
+│  │  node.conf                     # 节点信息存储文件
+│  │  update.conf                   # 更新配置文件
+│  │  update.go                     # 更新程序源码
+│  │  
+│  ├─node-access-logs               # 节点访问日志文件夹
+│  │      
+│  ├─node-config
+│  │      mime.types                # 节点nginx所需文件
+│  │      nginx.conf                # 节点nginx.conf
+│  │      
+│  └─systemd
+│          xiaolan-cdn-log.service  # Log同步系统服务文件
+│          xiaolan-cdn-log.timer    # Log同步系统服务定时任务文件
+│          
+└─Node
+    ├─conf
+    │      mime.types               # 节点nginx所需文件
+    │      nginx.conf               # 节点nginx.conf
+    │      
+    ├─logs                          # 节点日志文件夹
+    │      
+    └─sbin
+            nginx                   # 节点Nginx程序
 ```
 
 ## 联系我
