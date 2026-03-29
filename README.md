@@ -4,6 +4,12 @@ Gitee：https://gitee.com/Xiaolan23333/Xiaolan-CDN
 
 GitHub：https://github.com/Xiaolan2333/Xiaolan-CDN
 
+## 面板
+
+Gitee：https://gitee.com/Xiaolan23333/Xiaolan-CDN-Web
+
+GitHub：https://github.com/Xiaolan2333/Xiaolan-CDN-Web
+
 ## 功能
 
 1.同步Nginx配置文件
