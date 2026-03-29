@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Xiaolan-CDN被控安装脚本"
+echo "Xiaolan-CDN节点安装脚本"
 echo "安装所需运行库"
 apt install libgd-dev unzip -y
 echo "安装完成"
