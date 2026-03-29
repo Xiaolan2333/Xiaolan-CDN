@@ -26,7 +26,7 @@ GitHub：https://github.com/Xiaolan2333/Xiaolan-CDN
 
 除`Deb`系系统，其他系统需手动安装（未测试）
 ### 主控安装
-#### 如需使用`Xiaolan-CDN-Web`请使用自动安装
+#### 如需使用`Xiaolan-CDN-Web`最好使用自动安装
 #### 自动安装
 ```Bash
 wget https://raw.githubusercontent.com/Xiaolan2333/Xiaolan-CDN/refs/heads/main/install-system.sh && chmod 777 install-system.sh && ./install-system.sh
@@ -59,7 +59,7 @@ cd /opt/xiaolan-cdn-system && ./main
 
 #### 手动安装
 
-#### 如需使用`Xiaolan-CDN-Web`请使用自动安装
+#### 如需使用`Xiaolan-CDN-Web`最好使用自动安装
 1.新建一个文件夹并进入：
 ```Bash
 mkdir 文件夹名 && cd 文件夹名
@@ -75,7 +75,7 @@ wget https://github.com/Xiaolan2333/Xiaolan-CDN/releases/latest/download/Xiaolan
 unzip Xiaolan-System-Node.zip
 ```
 
-4.复制Systemd进程守护文件：
+4.复制Systemd进程守护文件：（需自行修改路径）
 ```Bash
 cp ./systemd/xiaolan-cdn-log.service /etc/systemd/system && cp ./systemd/xiaolan-cdn-log.timer /etc/systemd/system
 ```
