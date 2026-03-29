@@ -10,7 +10,7 @@ echo "下载压缩包"
 wget -P /opt/xiaolan-cdn-system https://github.com/Xiaolan2333/Xiaolan-CDN/releases/latest/download/Xiaolan-CDN-System.zip
 echo "压缩包下载完成"
 echo "解压压缩包"
-unzip /opt/xiaolan-cdn/Xiaolan-CDN-System.zip -d /opt/xiaolan-cdn-system
+unzip /opt/xiaolan-cdn-system/Xiaolan-CDN-System.zip -d /opt/xiaolan-cdn-system
 chmod -R 777 /opt/xiaolan-cdn-system
 echo "解压完成"
 echo "设置Systemd配置文件"
