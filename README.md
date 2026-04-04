@@ -1,221 +1,31 @@
 # Xiaolan-CDN
 
-Gitee：https://gitee.com/Xiaolan23333/Xiaolan-CDN
+## 文档
 
-GitHub：https://github.com/Xiaolan2333/Xiaolan-CDN
+[https://xiaolan2333.github.io](https://xiaolan2333.github.io)
 
-## 面板
+## 各存储库：
 
-Gitee：https://gitee.com/Xiaolan23333/Xiaolan-CDN-Web
+### Xiaolan-CDN-System
 
-GitHub：https://github.com/Xiaolan2333/Xiaolan-CDN-Web
+Gitee：[https://gitee.com/Xiaolan23333/Xiaolan-CDN-System](https://gitee.com/Xiaolan23333/Xiaolan-CDN-System)
 
-## 功能
+GitHub：[https://github.com/Xiaolan2333/Xiaolan-CDN-System](https://github.com/Xiaolan2333/Xiaolan-CDN-System)
 
-1.同步Nginx配置文件
+### Xiaolan-CDN-Web
 
-2.将Nginx访问日志收集到一台服务器上
+Gitee：[https://gitee.com/Xiaolan23333/Xiaolan-CDN-Web](https://gitee.com/Xiaolan23333/Xiaolan-CDN-Web)
 
-## 食用方法
-### 支持的操作系统
-主控：
+GitHub：[https://github.com/Xiaolan2333/Xiaolan-CDN-Web](https://github.com/Xiaolan2333/Xiaolan-CDN-Web)
 
-一键安装脚本仅支持`Deb`系
+### Xiaolan-CDN-Node
 
-理论上支持所有`Linux内核版本≥3.2`且使用`Systemd`的Linux系统
+Gitee：[https://gitee.com/Xiaolan23333/Xiaolan-CDN-Node](https://gitee.com/Xiaolan23333/Xiaolan-CDN-Node)
 
-节点：
-
-一键安装脚本仅支持`Deb`系
-
-`Debian 11~13`经测试没有BUG，其余未知
-
-除`Deb`系系统，其他系统需手动安装（未测试）
-### 主控安装
-#### 如需使用`Xiaolan-CDN-Web`最好使用自动安装
-#### 自动安装
-```Bash
-wget https://raw.githubusercontent.com/Xiaolan2333/Xiaolan-CDN/refs/heads/main/install-system.sh && chmod 777 install-system.sh && ./install-system.sh
-```
-脚本会将主控安装到`/opt/xiaolan-cdn-system`
-
-设置`node.conf`节点列表：
-```Bash
-vim /opt/xiaolan-cdn-system/node.conf
-```
-`node.conf`格式：
-```node.conf
-服务器名（例如Aliyun-JP）
-IP（例如127.0.0.1）
-端口（例如22）
-用户名（例如root）
-密码（服务器的密码）
-
-服务器名（例如Aliyun-JP）
-IP（例如127.0.0.1）
-端口（例如22）
-用户名（例如root）
-密码（服务器的密码）
-```
-
-执行配置文件同步
-```Bash
-cd /opt/xiaolan-cdn-system && ./main
-```
-
-#### 手动安装
-
-#### 如需使用`Xiaolan-CDN-Web`最好使用自动安装
-1.新建一个文件夹并进入：
-```Bash
-mkdir 文件夹名 && cd 文件夹名
-```
-
-2.下载主控文件：
-```Bash
-wget https://github.com/Xiaolan2333/Xiaolan-CDN/releases/latest/download/Xiaolan-CDN-System.zip
-```
-
-3.解压：
-```Bash
-unzip Xiaolan-System-Node.zip
-```
-
-4.复制Systemd进程守护文件：（需自行修改路径）
-```Bash
-cp ./systemd/xiaolan-cdn-log.service /etc/systemd/system && cp ./systemd/xiaolan-cdn-log.timer /etc/systemd/system
-```
-
-5.设置`node.conf`节点列表：
-```Bash
-vim node.conf
-```
-`node.conf`格式：
-```node.conf
-服务器名（例如Aliyun-JP）
-IP（例如127.0.0.1）
-端口（例如22）
-用户名（例如root）
-密码（服务器的密码）
-
-服务器名（例如Aliyun-JP）
-IP（例如127.0.0.1）
-端口（例如22）
-用户名（例如root）
-密码（服务器的密码）
-```
-
-6.将你的`nginx.conf`文件放入`主控文件夹/node-config`中
-
-7.执行配置文件同步
-
-在主控文件夹中执行
-```Bash
-cd 主控文件夹 && ./main
-```
-
-8.运行Log同步系统，Log文件保存在`node-accrss-logs`文件夹内，自动按服务器名-日期.log存储
-```Bash
-systemctl daemon-reload && systemctl enable xiaolan-cdn-log.timer --now
-```
-
-9.安装结束，建议奖励自己喝一杯奶茶
-
-注：配置文件同步的是整个`node-config`文件夹内的所有文件，证书文件也可以放里面；Log同步系统是下载节点中的`/opt/xiaolan-cdn/logs/access.log`文件，需在`nginx.conf`中指定`access.log`的文件路径为`/opt/xiaolan-cdn/logs/access.log`
-
-### 节点安装
-```Bash
-wget https://raw.githubusercontent.com/Xiaolan2333/Xiaolan-CDN/refs/heads/main/install-node.sh && chmod 777 install-node.sh && ./install-node.sh
-```
-
-### 更新节点`nginx.conf`配置文件
-将你新的`nginx.conf`文件放入`主控文件夹/node-config`中，然后在主控文件夹中执行
-```Bash
-cd 主控文件夹 && ./main
-```
-即可同步新的配置文件
-
-### 更新节点
-只需要在主控文件夹中运行（主控版本需≥0.0.2）
-```Bash
-cd 主控文件夹 && ./update
-```
-即可自动更新所有节点
-
-### 更新主控
-1.备份`node.conf`文件
-
-2.删掉主控文件夹内的所有文件
-
-3.下载最新版主控文件并在原主控文件夹内解压
-
-4.把备份的`node.conf`覆盖到主控文件夹内的`node.conf`
-
-5.执行
-```Bash
-systemctl restart xiaolan-cdn-log.timer
-```
-6.更新完成
-
-## 从源码运行
-主控：
-
-主程序：
-```Bash
-go run main.go
-```
-日志同步程序：
-```Bash
-go run log.go
-```
-
-节点：
-
-节点就是一个普通的`Nginx`，没有其它程序（
-
-我使用的编译参数：
-```Bash
-./configure --prefix=/opt/xiaolan-cdn --build=Xiaolan-CDN --with-threads --with-file-aio --with-http_ssl_module --with-http_v2_module --with-http_v3_module --with-http_realip_module --with-http_addition_module --with-http_image_filter_module --with-http_sub_module --with-http_dav_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_auth_request_module --with-http_random_index_module --with-http_secure_link_module --with-http_degradation_module --with-http_slice_module --with-http_stub_status_module --with-stream --with-stream_ssl_module --with-stream_realip_module --with-stream_ssl_preread_module --with-pcre-jit --with-compat --with-pcre=/root/pcre2-10.47 --with-zlib=/root/zlib-1.3.2 --with-openssl=/root/openssl-3.5.5 --add-module=/root/njs-0.96/nginx
-```
-如果需要自己编译需自行下载并替换参数中的`OpenSSL`、`PCRE2`、`Zlib`和`Nginx-NJS`的路径
-
-## 本仓库各文件及文件夹说明
-```Git
-根目录
-│  install-node.sh                  # 节点安装脚本
-│  install-system.sh                # 主控安装脚本
-│  LICENSE                          # 许可证
-│  README.md                        # 仓库说明
-│  
-├─Main
-│  │  log.go                        # 日志同步程序源码
-│  │  main.go                       # 主程序源码
-│  │  node.conf                     # 节点信息存储文件
-│  │  update.conf                   # 更新配置文件
-│  │  update.go                     # 更新程序源码
-│  │  
-│  ├─node-access-logs               # 节点访问日志文件夹
-│  │      
-│  ├─node-config
-│  │      mime.types                # 节点nginx所需文件
-│  │      nginx.conf                # 节点nginx.conf
-│  │      
-│  └─systemd
-│          xiaolan-cdn-log.service  # Log同步系统服务文件
-│          xiaolan-cdn-log.timer    # Log同步系统服务定时任务文件
-│          
-└─Node
-    ├─conf
-    │      mime.types               # 节点nginx所需文件
-    │      nginx.conf               # 节点nginx.conf
-    │      
-    ├─logs                          # 节点日志文件夹
-    │      
-    └─sbin
-            nginx                   # 节点Nginx程序
-```
+GitHub：[https://github.com/Xiaolan2333/Xiaolan-CDN-Node](https://github.com/Xiaolan2333/Xiaolan-CDN-Node)
 
 ## 联系我
+
 请发送邮件至`Xiaolan@Xiaolan.xin`
 
 我会在看到的第一时间回复
